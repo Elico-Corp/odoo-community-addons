@@ -1,2 +1,2 @@
 # Odoo community modules
-This is a garbage repository for community modules
+This is a backup repository for Odoo community modules
