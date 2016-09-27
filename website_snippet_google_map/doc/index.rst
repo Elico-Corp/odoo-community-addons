@@ -3,7 +3,7 @@
    :alt: License: AGPL-3
 
 ==================
-Snippet Google Map
+Google Map Snippet
 ==================
 
 You need to install the *Less CSS* compiler to run this snippet
