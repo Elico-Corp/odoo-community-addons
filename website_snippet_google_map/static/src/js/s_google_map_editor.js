@@ -3,7 +3,7 @@
 
     var website = openerp.website;
 
-    website.add_template_file('/snippet_google_map/static/src/xml/s_google_map_modal.xml');
+    website.add_template_file('/website_snippet_google_map/static/src/xml/s_google_map_modal.xml');
 
     website.openerp_website = {};
     
@@ -12,7 +12,7 @@
         map: function (type, value, $li) {
             if (type !== 'click') return;
             var self = this;  
-            self.$modal = $(openerp.qweb.render("snippet_google_map.s_google_map_modal"));
+            self.$modal = $(openerp.qweb.render("website_snippet_google_map.s_google_map_modal"));
             self.$modal.appendTo('body');           
             self.$modal.modal();
 

@@ -16,7 +16,7 @@
   <!-- Add to the top bar -->
   <template id="google_map_snippet" inherit_id="website_less.snippets">
     <xpath expr="//div[@id='snippet_feature']" position="inside">
-      <t t-snippet="snippet_google_map.s_google_map" t-thumbnail="/snippet_google_map/static/src/img/thumbnail.png"/>
+      <t t-snippet="website_snippet_google_map.s_google_map" t-thumbnail="/website_snippet_google_map/static/src/img/thumbnail.png"/>
     </xpath>
   </template>
   
