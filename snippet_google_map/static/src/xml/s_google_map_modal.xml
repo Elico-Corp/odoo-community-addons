@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
 
-<t t-name="website_snippet_google_map.s_google_map_modal">
+<t t-name="snippet_google_map.s_google_map_modal">
   <div class="modal fade" id="mapModal" contenteditable="False" contentEditable="false" backdrop="false" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index:2001">
   
     <div class="modal-dialog">
