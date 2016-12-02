@@ -58,7 +58,7 @@
             //Create Marker & Infowindow 
             if(self.$target.attr('data-pin-style') == "flat") {
                 var is_internetExplorer11 = navigator.userAgent.toLowerCase().indexOf('trident') > -1;
-                var marker_url = (is_internetExplorer11) ? '/website_snippet_google_map/static/src/img/s_google_map/marker.png' : '/website_snippet_google_map/static/src/img/marker.svg';
+                var marker_url = (is_internetExplorer11) ? '/snippet_google_map/static/src/img/s_google_map/marker.png' : '/snippet_google_map/static/src/img/marker.svg';
 
                 var marker = new google.maps.Marker({
                     map: map,
