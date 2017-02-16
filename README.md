@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/Elico-Corp/odoo-community-addons.svg?branch=8.0)](https://travis-ci.org/Elico-Corp/odoo-community-addons)
+[![Coverage Status](https://coveralls.io/repos/github/Elico-Corp/odoo-community-addons/badge.svg?branch=8.0)](https://coveralls.io/github/Elico-Corp/odoo-community-addons?branch=8.0)
+
 # Odoo community modules
 This is a backup repository for Odoo community modules
 
