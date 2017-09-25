@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!--
+        Resource: res.header for reporting
+        -->
+        <record id="report_header_default_landscape" model="res.header">
+            <field name="name">default landscape</field>
+            <field name="rml_header">
+            You need to fill in manually rml report header
+			</field>
+            <field name="internal" eval="0"/>
+        </record>
+        <record id="report_header_default_portrait" model="res.header">
+            <field name="name">default portrait</field>
+            <field name="rml_header">
+            You need to fill in manually rml report header 
+ 			</field>
+            <field name="internal" eval="0"/>
+        </record>
+        
+        
+        <!-- jon:  add a record of  base_report_header name 'external portrait'  -->
+        <record  model='res.header' id='external_landscape_portrait'>
+            <field name='name'>external portrait</field>
+            <field name='rml_header'>&#60;header&#62;
+            &#60;pageTemplate&#62;
+                &#60;frame id="first" x1="1.3cm" y1="2.5cm" height="24.6cm" width="19cm"/&#62;
+                 &#60;pageGraphics&#62;
+                    &#60;setFont name="verasansyuanti_bold" size="10"/&#62;
+                    &#60;drawRightString x="20.2cm" y="28.8cm"&#62;[[ company.rml_header1 ]]&#60;/drawRightString&#62;
+                    &#60;lines&#62;0.8cm 28.7cm 20.2cm 28.7cm&#60;/lines&#62;
+                    &#60;!-- Your Logo - Change X,Y,Width and Height --&#62;
+                    &#60;image x="1.2cm" y="26.9cm" height="50.0"&#62;[[ company.logo or removeParentNode('image') ]]&#60;/image&#62;
+                    &#60;fill color="black"/&#62;
+                    &#60;stroke color="black"/&#62;
+        
+                    &#60;setFont name="verasansyuanti_bold" size="8"/&#62;
+                    &#60;drawString x="3.8cm" y="28.2cm"&#62;[[ company.partner_id.name ]]&#60;/drawString&#62;
+                    &#60;setFont name="verasansyuanti_regular" size="8"/&#62;
+                    &#60;drawString x="3.8cm" y="27.7cm"&#62;[[ company.partner_id and company.partner_id.street or  "" ]]&#60;/drawString&#62;
+                    &#60;drawString x="3.8cm" y="27.2cm"&#62;[[ company.partner_id and company.partner_id.zip or "" ]] [[ company.partner_id and company.partner_id.city or "" ]] - [[ company.partner_id and company.partner_id.country_id and company.partner_id.country_id.name  or ""]]&#60;/drawString&#62;
+        
+                     &#60;drawString x="13cm" y="28.2cm"&#62;Contact/联系人:&#60;/drawString&#62;
+                    &#60;drawString x="15.3cm" y="28.2cm"&#62; [[ user.name ]] &#60;/drawString&#62;
+                    &#60;drawString x="13cm" y="27.7cm"&#62;Phone/电话:&#60;/drawString&#62;
+                    &#60;drawString x="15.3cm" y="27.7cm"&#62;[[ company.partner_id and company.partner_id.phone or "" ]]&#60;/drawString&#62;
+                    &#60;drawString x="13cm" y="27.2cm"&#62;Mail/邮件地址:&#60;/drawString&#62;
+                    &#60;drawString x="15.3cm" y="27.2cm"&#62;[[ company.partner_id and company.partner_id.email or "" ]]&#60;/drawString&#62;
+        
+                    &#60;lines&#62;0.8cm 27cm 20.2cm 27cm&#60;/lines&#62;
+                    &#60;!--page bottom--&#62;
+                    &#60;lines&#62;0.8cm 1.8cm 20.2cm 1.8cm&#60;/lines&#62;
+        
+                    &#60;setFont name="verasansyuanti_regular" size="6"/&#62;
+                    &#60;drawCentredString x="10.5cm" y="0.5cm"&#62;Page: &#60;pageNumber/&#62;&#60;/drawCentredString&#62;
+                &#60;/pageGraphics&#62;
+            &#60;/pageTemplate&#62;
+        &#60;/header&#62;</field>
+            <field name='internal'>True</field>
+        </record>
+
+
+
+<!-- &#60; &#62;     -->
+        
+        
+        
+        
+        
+        
+        
+        
+    </data>
+</openerp>
+        
