@@ -20,7 +20,7 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
+from openerp.osv import orm, fields, osv
 import openerp.addons.decimal_precision as dp
 from openerp.tools.translate import _
 import logging
@@ -338,19 +338,41 @@ class purchase_order_line(orm.Model):
         if not ids:
             return {}
         result = {}
+        amount_qty = 0
+        for line in self.browse(cr, uid, ids, context=context):
+            amount_qty += line.product_qty
         # landed costs for the line
         for line in self.browse(cr, uid, ids, context=context):
             landed_costs = 0.0
+            line_landed_costs = 0.0
+            total_landed_costs = 0.0
             if line.landed_cost_line_ids:
                 for costs in line.landed_cost_line_ids:
                     if costs.adjusted:
                         continue
-                    if (costs.distribution_type_id.landed_cost_type == 'value' and
-                            costs.distribution_type_id.apply_on == 'line'):
-                        original_qty = costs.original_qty if costs.original_qty else line.product_qty
-                        landed_costs += (costs.amount / original_qty) * line.remaining_qty
+                    if costs.distribution_type_id.landed_cost_type == 'value':
+                        original_qty = line.product_qty
+                        line_landed_costs += (costs.amount / original_qty
+                                              ) * line.remaining_qty
                     else:
-                        landed_costs += costs.amount * line.remaining_qty
+                        original_qty = line.product_qty
+                        line_landed_costs += (costs.amount / original_qty
+                                              ) * line.remaining_qty
+            if line.order_id and line.order_id.landed_cost_line_ids \
+                    and line.order_id.amount_total:
+                for costs in line.order_id.landed_cost_line_ids:
+                    if costs.adjusted:
+                        continue
+                    if costs.distribution_type_id.landed_cost_type == 'value':
+                        original_qty = line.product_qty
+                        total_landed_costs += (costs.amount / original_qty
+                            ) * line.remaining_qty * (line.price_subtotal
+                                                      / line.order_id.amount_total)
+                    else:
+                        original_qty = line.product_qty
+                        total_landed_costs += (costs.amount / original_qty
+                            ) * line.remaining_qty * (line.product_qty / amount_qty)
+            landed_costs = line_landed_costs + total_landed_costs
             result[line.id] = landed_costs
         return result
 
@@ -360,10 +382,6 @@ class purchase_order_line(orm.Model):
             'landed.cost.position',
             'purchase_order_line_id',
             'Landed Costs Positions'),
-        'landing_costs': fields.function(
-            _landing_costs,
-            digits_compute=dp.get_precision('Account'),
-            string='Landing Costs'),
         'remaining_qty': fields.float(
             string="Remaining Quantity", digits_compute=dp.get_precision('Purchase Price')),
         'landing_costs': fields.function(
